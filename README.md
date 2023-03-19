@@ -152,4 +152,5 @@ La incorporación de GitHub en la metodología de trabajo permitirá a los estud
 - Schildt, H. (2007). Fundamentos de Java (3ra ed.). McGraw Hill.
 - Sanchez, J. (2005). Programación en java 2 serie Schaum (1ra ed.). McGraw Hill.
 
+[Ver documentación aquí](https://domingo1987.github.io/Curso-JAVA/docs/html/index.html)
 
