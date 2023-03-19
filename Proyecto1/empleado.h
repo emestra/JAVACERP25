@@ -28,23 +28,23 @@ typedef struct empleado {
 } Empleado;
 
 /**
-@brief Función para crear un nuevo empleado.
-@param nombre Nombre del empleado.
-@param id ID del empleado.
-@param salario_mensual Salario mensual del empleado.
-@return Puntero al empleado creado.
+ * @brief Función para crear un nuevo empleado.
+ * @param nombre Nombre del empleado.
+ * @param id ID del empleado.
+ * @param salario_mensual Salario mensual del empleado.
+ * @return Puntero al empleado creado.
 */
 Empleado *crear_empleado(const char *nombre, int id, float salario_mensual);
 
 /**
-@brief Función para mostrar los datos de un empleado.
-@param empleado Puntero al empleado a mostrar.
+ * @brief Función para mostrar los datos de un empleado.
+ * @param empleado Puntero al empleado a mostrar.
 */
 void mostrar_empleado(const Empleado *empleado);
 
 /**
-@brief Función para eliminar un empleado.
-@param empleado Puntero al empleado a eliminar.
+ * @brief Función para eliminar un empleado.
+ * @param empleado Puntero al empleado a eliminar.
 */
 void eliminar_empleado(Empleado *empleado);
 

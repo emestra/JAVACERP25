@@ -1,4 +1,5 @@
 /**
+ * @file MiPrimerEjemplo.java
  * @brief Clase que contiene el método main para imprimir un mensaje por pantalla.
  * Esta clase contiene el método main que imprime por pantalla un mensaje de "Hola mundo!".
  * @author Domingo Pérez

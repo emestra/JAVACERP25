@@ -3,9 +3,6 @@
  * @author Domingo Pérez
  * @date 16 de marzo de 2023
  * @brief Implementación de la estructura Empleado y sus operaciones.
- * @course Programación 2
- * @year 2023
- * @center CeRP del Suroeste
  */
 
 #include <stdio.h>
