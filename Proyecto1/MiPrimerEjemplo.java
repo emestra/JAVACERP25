@@ -1,13 +1,18 @@
 /**
  * @file MiPrimerEjemplo.java
- * @brief Clase que contiene el método main para imprimir un mensaje por pantalla.
- * Esta clase contiene el método main que imprime por pantalla un mensaje de "Hola mundo!".
+ * @brief Ejemplo de creación e impresión de un objeto de tipo Empleado.
  * @author Domingo Pérez
- * @date 16/04/2023
-*/
+ * @date 19/03/2023
+ */
 
-public class MiPrimerEjemplo {
+ public class MiPrimerEjemplo {
    public static void main(String[] args) {
-      System.out.println("Hola mundo!");
+       // Creación del objeto empleado
+       Empleado empleado1 = new Empleado("Juan Perez", 123456, 15000.0f);
+
+       // Impresión de la información del empleado
+       System.out.println("Nombre: " + empleado1.getNombre());
+       System.out.println("ID: " + empleado1.getId());
+       System.out.println("Salario mensual: $" + empleado1.getSalarioMensual());
    }
 }
