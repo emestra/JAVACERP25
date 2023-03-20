@@ -30,6 +30,7 @@ var menudata={children:[
 {text:"Índice de clases",url:"classes.html"},
 {text:"Miembros de las clases",url:"functions.html",children:[
 {text:"Todo",url:"functions.html"},
+{text:"Funciones",url:"functions_func.html"},
 {text:"Variables",url:"functions_vars.html"}]}]},
 {text:"Archivos",url:"files.html",children:[
 {text:"Lista de archivos",url:"files.html"},
