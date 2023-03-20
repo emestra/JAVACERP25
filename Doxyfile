@@ -612,6 +612,7 @@ INTERNAL_DOCS          = NO
 # The default value is: SYSTEM.
 
 #CASE_SENSE_NAMES       = SYSTEM
+# ver en baseexample en la instalacion de doxygen
 CASE_SENSE_NAMES       = YES
 
 # If the HIDE_SCOPE_NAMES tag is set to NO then doxygen will show members with
