@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['miprimerejemplo_2ejava_0',['MiPrimerEjemplo.java',['../_mi_primer_ejemplo_8java.html',1,'']]]
+  ['miprimerejemplo_2ejava_0',['MiPrimerEjemplo.java',['../MiPrimerEjemplo_8java.html',1,'']]]
 ];
