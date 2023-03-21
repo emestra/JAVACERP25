@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['empleado_2ejava_0',['Empleado.java',['../Empleado_8java.html',1,'']]]
+  ['admingui_2ejava_0',['AdminGUI.java',['../AdminGUI_8java.html',1,'']]]
 ];

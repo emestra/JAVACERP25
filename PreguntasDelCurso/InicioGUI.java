@@ -9,8 +9,7 @@ import javax.swing.*;
  * @date 20/03/2023
  * @version 1.0
  */
-public class MenuGUI extends JFrame implements ActionListener {
-    
+public class InicioGUI extends JFrame implements ActionListener {
     private JButton adminButton;
     private JButton preguntasButton;
     private PreguntasList questionList;
@@ -22,7 +21,7 @@ public class MenuGUI extends JFrame implements ActionListener {
      * @param questionList La lista de preguntas.
      * @param fileHandler El manejador de archivos de preguntas.
      */
-    public MenuGUI(PreguntasList questionList, FileHandler fileHandler) {
+    public InicioGUI(PreguntasList questionList, FileHandler fileHandler) {
         super("Menú Principal");
         this.questionList = questionList;
         this.fileHandler = fileHandler;
@@ -52,9 +51,11 @@ public class MenuGUI extends JFrame implements ActionListener {
      */
     public void actionPerformed(ActionEvent e) {
         if (e.getSource() == adminButton) {
-            new AdminGUI(questionList, fileHandler);
+            AdminGUI adminGUI = new AdminGUI(questionList, fileHandler);
+            adminGUI.setVisible(true);
         } else if (e.getSource() == preguntasButton) {
-            new PreguntaGUI(questionList);
+            PreguntaGUI preguntaGUI = new PreguntaGUI(questionList);
+            preguntaGUI.setVisible(true);
         }
         
         dispose();

@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['empleado_0',['Empleado',['../classEmpleado.html',1,'']]]
+  ['admingui_0',['AdminGUI',['../classPreguntasDelCurso_1_1AdminGUI.html',1,'PreguntasDelCurso']]]
 ];

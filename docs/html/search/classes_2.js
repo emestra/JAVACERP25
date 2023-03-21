@@ -1,5 +1,4 @@
 var searchData=
 [
-  ['main_0',['Main',['../classPreguntasDelCurso_1_1Main.html',1,'PreguntasDelCurso']]],
-  ['miprimerejemplo_1',['MiPrimerEjemplo',['../classMiPrimerEjemplo.html',1,'']]]
+  ['filehandler_0',['FileHandler',['../classPreguntasDelCurso_1_1FileHandler.html',1,'PreguntasDelCurso']]]
 ];

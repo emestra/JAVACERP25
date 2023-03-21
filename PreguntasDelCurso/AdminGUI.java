@@ -1,13 +1,18 @@
 package PreguntasDelCurso;
 
+import java.awt.BorderLayout;
+import java.awt.Dimension;
+import java.awt.FlowLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.IOException;
 
+import javax.swing.BoxLayout;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
+import javax.swing.JPanel;
 import javax.swing.JTextField;
 
 /**
@@ -17,7 +22,6 @@ import javax.swing.JTextField;
  * @version 1.0
  */
 public class AdminGUI extends JFrame implements ActionListener {
-
     private PreguntasList questionList;
     private FileHandler fileHandler;
     private int currentQuestionIndex;
@@ -46,31 +50,50 @@ public class AdminGUI extends JFrame implements ActionListener {
         // Configuración de la ventana
         setTitle("Panel de Administración de Preguntas");
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        setSize(500, 300);
+        setSize(800, 600);
         setLocationRelativeTo(null);
-        setResizable(false);
+
+        // Panel para mostrar la pregunta
+        JPanel preguntaPanel = new JPanel();
+        preguntaPanel.setLayout(new BoxLayout(preguntaPanel, BoxLayout.Y_AXIS));
+        preguntaPanel.setPreferredSize(new Dimension(600, 50)); // especificar una altura fija
+
 
         // Configuración de los componentes
         idLabel = new JLabel("ID de pregunta: 1");
         idLabel.setBounds(20, 20, 200, 20);
+        preguntaPanel.add(idLabel, BorderLayout.CENTER);
 
         preguntaLabel = new JLabel("Pregunta:");
         preguntaLabel.setBounds(20, 50, 80, 20);
+        preguntaPanel.add(preguntaLabel, BorderLayout.CENTER);
 
         preguntaField = new JTextField();
         preguntaField.setBounds(100, 50, 300, 20);
+        preguntaPanel.add(preguntaField, BorderLayout.CENTER);
 
         opcionesLabel = new JLabel("Opciones:");
         opcionesLabel.setBounds(20, 80, 80, 20);
+        preguntaPanel.add(opcionesLabel, BorderLayout.CENTER);
 
         opcionesField = new JTextField();
         opcionesField.setBounds(100, 80, 300, 20);
+        preguntaPanel.add(opcionesField, BorderLayout.CENTER);
 
         correctaLabel = new JLabel("Respuesta correcta:");
         correctaLabel.setBounds(20, 110, 140, 20);
+        preguntaPanel.add(correctaLabel, BorderLayout.CENTER);
 
         correctaField = new JTextField();
         correctaField.setBounds(160, 110, 240, 20);
+        preguntaPanel.add(correctaField, BorderLayout.CENTER);
+
+        add(preguntaPanel, BorderLayout.CENTER);
+
+        
+        // Panel para mostrar los botones de acción
+        JPanel actionPanel = new JPanel();
+        actionPanel.setLayout(new FlowLayout());
 
         siguienteButton = new JButton("Siguiente");
         siguienteButton.setBounds(150, 170, 100, 30);
@@ -84,17 +107,31 @@ public class AdminGUI extends JFrame implements ActionListener {
         atrasButton.setBounds(20, 170, 100, 30);
         atrasButton.addActionListener(this);
 
-        // Agregar los componentes a la ventana
-        add(idLabel);
-        add(preguntaLabel);
-        add(preguntaField);
-        add(opcionesLabel);
-        add(opcionesField);
-        add(correctaLabel);
-        add(correctaField);
-        add(siguienteButton);
-        add(confirmarButton);
-        add(atrasButton);
+        actionPanel.add(siguienteButton);
+        actionPanel.add(confirmarButton);
+        actionPanel.add(atrasButton);
+
+        add(actionPanel, BorderLayout.SOUTH);
+
+
+
+    }
+
+    /**
+     * 
+     * @brief Método para establecer el índice de la pregunta actual.
+     * @param index El índice de la pregunta actual.
+    */
+    public void setCurrentQuestionIndex(int index) {
+        this.currentQuestionIndex = index;
+    }
+    /**
+     * 
+     * @brief Método para obtener el índice de la pregunta actual.
+     * @return El índice de la pregunta actual.
+    */
+    public int getCurrentQuestionIndex() {
+        return currentQuestionIndex;
     }
 
     /**
@@ -149,5 +186,7 @@ public class AdminGUI extends JFrame implements ActionListener {
             dispose();
             //new MenuGUI(questionList, fileHandler);
         }
+        pack(); // Ajustar tamaño al contenido
+        setResizable(false); // No permitir redimensionar
     }
 }

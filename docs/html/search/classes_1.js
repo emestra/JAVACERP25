@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['filehandler_0',['FileHandler',['../classPreguntasDelCurso_1_1FileHandler.html',1,'PreguntasDelCurso']]]
+  ['empleado_0',['Empleado',['../classEmpleado.html',1,'']]]
 ];
