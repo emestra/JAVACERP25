@@ -55,11 +55,16 @@ public class Main {
 
         System.out.println("Número de preguntas cargadas: " + questionList.size());
 
+         // Inicia la ventana de inicio de la aplicación
+        InicioGUI inicioGUI = new InicioGUI(questionList, fileHandler);
+        inicioGUI.setVisible(true);
+
+
         // Crear instancia de QuestionGUI para permitir al usuario interactuar con las preguntas
-        PreguntaGUI questionGUI = new PreguntaGUI(questionList);
+        //PreguntaGUI questionGUI = new PreguntaGUI(questionList);
         
         // Mostrar la interfaz gráfica
-        questionGUI.setVisible(true);
+        //questionGUI.setVisible(true);
         
         /* 
         // Persistir las preguntas actualizadas en preguntas.data
