@@ -37,15 +37,20 @@ public class AdminGUI extends JFrame implements ActionListener {
     private JButton confirmarButton;
     private JButton atrasButton;
 
+    // Agregar atributo InicioGUI llamado parentWindow
+    private InicioGUI parentWindow;
+
     /**
      * Constructor de la clase AdminGUI.
      * @param questionList la lista de preguntas existente.
      * @param fileHandler el manejador de archivos a utilizar.
      */
-    public AdminGUI(PreguntasList questionList, FileHandler fileHandler) {
+    public AdminGUI(PreguntasList questionList, FileHandler fileHandler, InicioGUI parentWindow) {
         this.questionList = questionList;
         this.fileHandler = fileHandler;
         this.currentQuestionIndex = 0;
+        this.parentWindow = parentWindow; // Asignar el objeto recibido al atributo parentWindow
+
 
         // Configuración de la ventana
         setTitle("Panel de Administración de Preguntas");
@@ -182,9 +187,8 @@ public class AdminGUI extends JFrame implements ActionListener {
             opcionesField.setText("");
             correctaField.setText("");
         } else if (e.getSource() == atrasButton) {
-            // Cerrar la ventana actual y volver a la ventana anterior
+            parentWindow.setVisible(true); // Hacer visible la ventana InicioGUI
             dispose();
-            //new MenuGUI(questionList, fileHandler);
         }
         pack(); // Ajustar tamaño al contenido
         setResizable(false); // No permitir redimensionar

@@ -10,8 +10,11 @@ import javax.swing.*;
  * @version 1.0
  */
 public class InicioGUI extends JFrame implements ActionListener {
-    private JButton adminButton;
-    private JButton preguntasButton;
+    private JMenuBar menuBar;
+    private JMenuItem adminMenuItem;
+    private JMenuItem preguntasMenuItem;
+    //private JButton adminButton;
+    //private JButton preguntasButton;
     private PreguntasList questionList;
     private FileHandler fileHandler;
     
@@ -26,6 +29,25 @@ public class InicioGUI extends JFrame implements ActionListener {
         this.questionList = questionList;
         this.fileHandler = fileHandler;
         
+        // Crear la barra de menú y agregarla a la ventana
+        menuBar = new JMenuBar();
+        setJMenuBar(menuBar);
+        
+        // Crear los elementos del menú y agregarlos directamente a la barra de menú
+        adminMenuItem = new JMenuItem("Administración");
+        adminMenuItem.addActionListener(this);
+        menuBar.add(adminMenuItem);
+        
+        preguntasMenuItem = new JMenuItem("Jugar");
+        preguntasMenuItem.addActionListener(this);
+        menuBar.add(preguntasMenuItem);
+        
+        setSize(800, 600);
+        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        setLocationRelativeTo(null);
+        setVisible(true);
+
+        /* 
         adminButton = new JButton("Administración");
         adminButton.addActionListener(this);
         
@@ -41,7 +63,7 @@ public class InicioGUI extends JFrame implements ActionListener {
         setSize(300, 100);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setLocationRelativeTo(null);
-        setVisible(true);
+        setVisible(true);*/
     }
     
     /**
@@ -50,11 +72,11 @@ public class InicioGUI extends JFrame implements ActionListener {
      * @param e El evento que ha ocurrido.
      */
     public void actionPerformed(ActionEvent e) {
-        if (e.getSource() == adminButton) {
-            AdminGUI adminGUI = new AdminGUI(questionList, fileHandler);
+        if (e.getSource() == adminMenuItem) {
+            AdminGUI adminGUI = new AdminGUI(questionList, fileHandler, this); // Pasar 'this' como argumento
             adminGUI.setVisible(true);
-        } else if (e.getSource() == preguntasButton) {
-            PreguntaGUI preguntaGUI = new PreguntaGUI(questionList);
+        } else if (e.getSource() == preguntasMenuItem) {
+            PreguntaGUI preguntaGUI = new PreguntaGUI(questionList, this);
             preguntaGUI.setVisible(true);
         }
         
