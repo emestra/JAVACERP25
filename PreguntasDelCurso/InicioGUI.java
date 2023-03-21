@@ -4,7 +4,7 @@ import java.awt.event.*;
 import javax.swing.*;
 
 /**
- * @file MenuGUI.java
+ * @file InicioGUI.java
  * @brief Clase para el menú principal de la aplicación.
  * @date 20/03/2023
  * @version 1.0
