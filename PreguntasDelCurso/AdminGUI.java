@@ -33,7 +33,6 @@ public class AdminGUI extends JFrame implements ActionListener {
     private JTextField opcionesField;
     private JLabel correctaLabel;
     private JTextField correctaField;
-    private JButton siguienteButton;
     private JButton confirmarButton;
     private JButton atrasButton;
 
@@ -65,7 +64,7 @@ public class AdminGUI extends JFrame implements ActionListener {
 
 
         // Configuración de los componentes
-        idLabel = new JLabel("ID de pregunta: 1");
+        idLabel = new JLabel("ID de pregunta: " + (questionList.size()+1));
         idLabel.setBounds(20, 20, 200, 20);
         preguntaPanel.add(idLabel, BorderLayout.CENTER);
 
@@ -100,10 +99,6 @@ public class AdminGUI extends JFrame implements ActionListener {
         JPanel actionPanel = new JPanel();
         actionPanel.setLayout(new FlowLayout());
 
-        siguienteButton = new JButton("Siguiente");
-        siguienteButton.setBounds(150, 170, 100, 30);
-        siguienteButton.addActionListener(this);
-
         confirmarButton = new JButton("Confirmar");
         confirmarButton.setBounds(260, 170, 100, 30);
         confirmarButton.addActionListener(this);
@@ -112,13 +107,10 @@ public class AdminGUI extends JFrame implements ActionListener {
         atrasButton.setBounds(20, 170, 100, 30);
         atrasButton.addActionListener(this);
 
-        actionPanel.add(siguienteButton);
         actionPanel.add(confirmarButton);
         actionPanel.add(atrasButton);
 
         add(actionPanel, BorderLayout.SOUTH);
-
-
 
     }
 
@@ -144,53 +136,50 @@ public class AdminGUI extends JFrame implements ActionListener {
      */
     @Override
     public void actionPerformed(ActionEvent e) {
-        if (e.getSource() == siguienteButton) {
-            // Actualizar el índice de la pregunta actual y el ID de pregunta
-            currentQuestionIndex++;
-            idLabel.setText("ID de pregunta: " + (questionList.size() + 1));
+        if (e.getSource() == confirmarButton) {
+            if (preguntaField.getText().isEmpty() || opcionesField.getText().isEmpty() || correctaField.getText().isEmpty()) {
+                JOptionPane.showMessageDialog(this, "Debe completar todos los campos.", "Error", JOptionPane.ERROR_MESSAGE);
+            } else {
+                confirmarButton.setEnabled(false); // Desactivar el botón de confirmar temporalmente
+                // Obtener los valores de los campos de texto
+                String pregunta = preguntaField.getText();
+                String opcionesString = opcionesField.getText();
+                String correcta = correctaField.getText();
 
-            // Limpiar los campos de pregunta, opciones y respuesta correcta
-            preguntaField.setText("");
-            opcionesField.setText("");
-            correctaField.setText("");
-        } else if (e.getSource() == confirmarButton) {
-            // Obtener los valores de los campos de texto
-            String pregunta = preguntaField.getText();
-            String opcionesString = opcionesField.getText();
-            String correcta = correctaField.getText();
+                // Separar las opciones en un arreglo
+                String[] opciones = opcionesString.split(",");
 
-            // Separar las opciones en un arreglo
-            String[] opciones = opcionesString.split(",");
+                // Crear la nueva pregunta
+                Pregunta nuevaPregunta = new Pregunta(questionList.size() + 1, pregunta, correcta, opciones);
 
-            // Crear la nueva pregunta
-            Pregunta nuevaPregunta = new Pregunta(questionList.size() + 1, pregunta, correcta, opciones);
+                // Agregar la pregunta a la lista y escribir la lista en el archivo
+                questionList.addQuestion(nuevaPregunta);
+                try {
+                    fileHandler.writeQuestions(questionList);
+                } catch (IOException ex) {
+                    JOptionPane.showMessageDialog(this, "Ocurrió un error al escribir en el archivo: " + ex.getMessage(),
+                            "Error", JOptionPane.ERROR_MESSAGE);
+                }
 
-            // Agregar la pregunta a la lista y escribir la lista en el archivo
-            questionList.addQuestion(nuevaPregunta);
-            try {
-                fileHandler.writeQuestions(questionList);
-            } catch (IOException ex) {
-                JOptionPane.showMessageDialog(this, "Ocurrió un error al escribir en el archivo: " + ex.getMessage(),
-                        "Error", JOptionPane.ERROR_MESSAGE);
-            }
+                // Mostrar mensaje de confirmación
+                JOptionPane.showMessageDialog(this, "Pregunta agregada correctamente.", "Confirmación",
+                        JOptionPane.INFORMATION_MESSAGE);
 
-            // Mostrar mensaje de confirmación
-            JOptionPane.showMessageDialog(this, "Pregunta agregada correctamente.", "Confirmación",
-                    JOptionPane.INFORMATION_MESSAGE);
+                // Actualizar el índice de la pregunta actual y el ID de pregunta
+                currentQuestionIndex++;
+                idLabel.setText("ID de pregunta: " + (questionList.size() + 1));
 
-            // Actualizar el índice de la pregunta actual y el ID de pregunta
-            currentQuestionIndex++;
-            idLabel.setText("ID de pregunta: " + (questionList.size() + 1));
-
-            // Limpiar los campos de pregunta, opciones y respuesta correcta
-            preguntaField.setText("");
-            opcionesField.setText("");
-            correctaField.setText("");
+                // Limpiar los campos de pregunta, opciones y respuesta correcta
+                preguntaField.setText("");
+                opcionesField.setText("");
+                correctaField.setText("");
+                confirmarButton.setEnabled(true); // Volver a activar el botón de confirmar
+            }   
         } else if (e.getSource() == atrasButton) {
             parentWindow.setVisible(true); // Hacer visible la ventana InicioGUI
             dispose();
         }
-        pack(); // Ajustar tamaño al contenido
-        setResizable(false); // No permitir redimensionar
+        //pack(); // Ajustar tamaño al contenido
+        //setResizable(false); // No permitir redimensionar
     }
 }

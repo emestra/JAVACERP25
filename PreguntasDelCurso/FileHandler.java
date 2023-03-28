@@ -63,4 +63,16 @@ public class FileHandler {
         objectOutputStream.close();
         fileOutputStream.close();
     }
+
+    /**
+     * Limpia el contenido del archivo especificado.
+     * 
+     * @throws IOException si ocurre un error de entrada/salida.
+     */
+    public void limpiarArchivo() throws IOException {
+        FileWriter fileWriter = new FileWriter(filename, false);
+        fileWriter.write("");
+        fileWriter.close();
+    }
+
 }

@@ -1,9 +1,8 @@
 var searchData=
 [
-  ['setcorrecta_0',['setCorrecta',['../classPreguntasDelCurso_1_1Pregunta.html#a8021b9a2e40856d817b12916b76e5b8e',1,'PreguntasDelCurso::Pregunta']]],
-  ['setcurrentquestionindex_1',['setCurrentQuestionIndex',['../classPreguntasDelCurso_1_1AdminGUI.html#a5bee8c31c79dbe4b8ec965cc58a08a6c',1,'PreguntasDelCurso::AdminGUI']]],
-  ['setidpregunta_2',['setIdPregunta',['../classPreguntasDelCurso_1_1Pregunta.html#a3cfa754b13703b4ec7b971a1def5492d',1,'PreguntasDelCurso::Pregunta']]],
-  ['setpregunta_3',['setPregunta',['../classPreguntasDelCurso_1_1Pregunta.html#a9553e2caf650b33e91ef3ea1cce19d37',1,'PreguntasDelCurso::Pregunta']]],
-  ['setsalariomensual_4',['setSalarioMensual',['../classEmpleado.html#a3d258ab0b1e5bc7164a930196e5e84a3',1,'Empleado']]],
-  ['size_5',['size',['../classPreguntasDelCurso_1_1PreguntasList.html#ad619f60924f1e8757e90ea928fde9d82',1,'PreguntasDelCurso::PreguntasList']]]
+  ['randomizer_0',['Randomizer',['../classPreguntasDelCurso_1_1Randomizer.html',1,'PreguntasDelCurso']]],
+  ['randomizer_2ejava_1',['Randomizer.java',['../Randomizer_8java.html',1,'']]],
+  ['readme_2emd_2',['README.md',['../README_8md.html',1,'']]],
+  ['readquestions_3',['readQuestions',['../classPreguntasDelCurso_1_1FileHandler.html#a7fc8f657d95ea9dd424007d4319cf23c',1,'PreguntasDelCurso.FileHandler.readQuestions()'],['../classPreguntasDelCursoMVC_1_1FileHandler.html#a0dc7778d79fa304b6d3a1379dc321deb',1,'PreguntasDelCursoMVC.FileHandler.readQuestions()']]],
+  ['removequestion_4',['removeQuestion',['../classPreguntasDelCurso_1_1PreguntasList.html#ab9d9934581157130f9a807db1e3bcb5c',1,'PreguntasDelCurso::PreguntasList']]]
 ];

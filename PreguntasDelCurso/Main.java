@@ -28,19 +28,21 @@ public class Main {
         // Crear instancia de QuestionList para manejar las preguntas en memoria
         PreguntasList questionList = new PreguntasList();
 
-        /*
+        /*// Limpio el archivo
+        try {
+            fileHandler.limpiarArchivo();
+        } catch (IOException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }*/
+
+        /* 
         // Cargar la primera pregunta
         String questionText1 = "1|¿Cuál es el concepto fundamental de la Programación Orientada a Objetos?|Objetos|Variables, Métodos, Clases, Interfaces|1";
         Pregunta question1 = Pregunta.fromString(questionText1);
-        questionList.addQuestion(question1);
+        questionList.addQuestion(question1);*/
 
-        // Cargar la segunda pregunta
-        String questionText2 = "2|¿Qué es una clase en Java?|Un modelo de objetos|Un tipo de dato primitivo,Un programa que ejecuta una tarea,respuesta 3, respuesta 4|1";
-        Pregunta question2 = Pregunta.fromString(questionText2);
-        questionList.addQuestion(question2);
-
-        System.out.println("Número de preguntas cargadas: " + questionList.size());
-        */
+        
         
         // Cargar las preguntas desde preguntas.txt
         try {
@@ -58,21 +60,5 @@ public class Main {
          // Inicia la ventana de inicio de la aplicación
         InicioGUI inicioGUI = new InicioGUI(questionList, fileHandler);
         inicioGUI.setVisible(true);
-
-
-        // Crear instancia de QuestionGUI para permitir al usuario interactuar con las preguntas
-        //PreguntaGUI questionGUI = new PreguntaGUI(questionList);
-        
-        // Mostrar la interfaz gráfica
-        //questionGUI.setVisible(true);
-        
-        /* 
-        // Persistir las preguntas actualizadas en preguntas.data
-        try {
-            fileHandler.writeQuestions(questionList);
-        } catch (IOException e) {
-            // TODO Auto-generated catch block
-            e.printStackTrace();
-        }*/
     }
 }

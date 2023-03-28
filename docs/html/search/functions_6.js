@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['main_0',['main',['../classPreguntasDelCurso_1_1Main.html#a0d4915c71d73996348fb5adbad27063a',1,'PreguntasDelCurso.Main.main()'],['../classMiPrimerEjemplo.html#afeaa84fcb2996d8b8c8819b92d2ded39',1,'MiPrimerEjemplo.main()']]]
+  ['limpiararchivo_0',['limpiarArchivo',['../classPreguntasDelCurso_1_1FileHandler.html#a23c6cd5d9c0e86f7000721140ff5f364',1,'PreguntasDelCurso.FileHandler.limpiarArchivo()'],['../classPreguntasDelCursoMVC_1_1FileHandler.html#a18b80825bf5a79bb36b0a696c6affc3d',1,'PreguntasDelCursoMVC.FileHandler.limpiarArchivo()']]]
 ];

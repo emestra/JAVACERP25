@@ -36,6 +36,8 @@ public class PreguntaGUI extends JFrame implements ActionListener {
     private JRadioButton[] answerButtons;
     private ButtonGroup buttonGroup;
 
+    private int correctIndex;
+
     /**
      * Constructor de la clase AdminGUI.
      * @param questionList la lista de preguntas existente.
@@ -59,7 +61,7 @@ public class PreguntaGUI extends JFrame implements ActionListener {
         preguntaPanel.setPreferredSize(new Dimension(600, 50)); // especificar una altura fija
 
         // Configuración de los componentes
-        idLabel = new JLabel("ID de pregunta: 1");
+        idLabel = new JLabel("ID de pregunta: " + "num");
         idLabel.setBounds(20, 20, 200, 20);
         preguntaPanel.add(idLabel, BorderLayout.CENTER);
 
@@ -98,6 +100,7 @@ public class PreguntaGUI extends JFrame implements ActionListener {
         add(answerPanel, BorderLayout.SOUTH);
 
         //Primer pregunta
+        idLabel.setText("ID de pregunta: " + questionList.size());
         Pregunta currentQuestion = questionList.getRandomQuestion();
         String correctAnswer = currentQuestion.getCorrecta();
         preguntaLabel.setText(currentQuestion.getPregunta());
@@ -152,41 +155,36 @@ public class PreguntaGUI extends JFrame implements ActionListener {
     public void actionPerformed(ActionEvent e) {
         if (e.getSource() == siguienteButton) {
             Pregunta currentQuestion = questionList.getRandomQuestion();
-                String correctAnswer = currentQuestion.getCorrecta();
-                preguntaLabel.setText(currentQuestion.getPregunta());
-                int correctButtonIndex = Randomizer.getRandomIndex(0, answerButtons.length - 1);
-                //int correctButtonIndex = (int) (Math.random() * (answerButtons.length));
-                answerButtons[correctButtonIndex].setText(correctAnswer);
-                int optionIndex = 0;
-                for (int i = 0; i < answerButtons.length; i++) {
-                    if (i == correctButtonIndex) {
-                        continue;
-                    }
-                    String option = currentQuestion.getOpciones()[optionIndex];
-                    if (option.equals(correctAnswer)) {
-                        optionIndex++;
-                    }
-                    answerButtons[i].setText(option);
+            String correctAnswer = currentQuestion.getCorrecta();
+            idLabel.setText("ID de pregunta: " + currentQuestion.getIdPregunta());
+            preguntaLabel.setText(currentQuestion.getPregunta());
+            int correctButtonIndex = Randomizer.getRandomIndex(0, answerButtons.length - 1);
+            this.correctIndex = correctButtonIndex;
+            //int correctButtonIndex = (int) (Math.random() * (answerButtons.length));
+            answerButtons[correctButtonIndex].setText(correctAnswer);
+            int optionIndex = 0;
+            for (int i = 0; i < answerButtons.length; i++) {
+                if (i == correctButtonIndex) {
+                    continue;
+                }
+                String option = currentQuestion.getOpciones()[optionIndex];
+                if (option.equals(correctAnswer)) {
                     optionIndex++;
                 }
+                answerButtons[i].setText(option);
+                optionIndex++;
+            }
                 
-               buttonGroup.clearSelection();
-
-
+            buttonGroup.clearSelection();
 
         } else if (e.getSource() == confirmarButton) {
             int selectedAnswer = Integer.parseInt(buttonGroup.getSelection().getActionCommand());
-                Pregunta currentQuestion = questionList.getRandomQuestion();
-                String correctAnswer = currentQuestion.getCorrecta();
-                if (answerButtons[selectedAnswer].getText().equals(correctAnswer)) {
+                if (selectedAnswer==this.correctIndex){
                     JOptionPane.showMessageDialog(PreguntaGUI.this, "¡Correcto!", "Resultado", JOptionPane.INFORMATION_MESSAGE);
                 } else {
                     JOptionPane.showMessageDialog(PreguntaGUI.this, "¡Incorrecto!", "Resultado", JOptionPane.ERROR_MESSAGE);
                 }
             
-
-
-
         } else if (e.getSource() == atrasButton) {
             parentWindow.setVisible(true); // Hacer visible la ventana InicioGUI
             dispose();
