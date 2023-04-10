@@ -1,7 +1,4 @@
-package PreguntasDelCursoMVC;
-import PreguntasDelCurso.PreguntasList;
-import PreguntasDelCurso.Pregunta;
-
+package PreguntasDelCursoMVC.Vista;
 
 import java.awt.BorderLayout;
 import java.awt.Dimension;
@@ -16,13 +13,12 @@ import javax.swing.JPanel;
 import javax.swing.JTextField;
 
 /**
- * @file AdminGUI.java
+ * @file AdminVista.java
  * @brief Clase para representar la interfaz gráfica de administración de preguntas.
  * @date 20/03/2023
  * @version 1.0
  */
-public class AdminGUI extends JFrame {
-
+public class AdminVista extends JFrame {
     private JLabel idLabel;
     private JLabel preguntaLabel;
     private JTextField preguntaField;
@@ -32,24 +28,17 @@ public class AdminGUI extends JFrame {
     private JTextField correctaField;
     private JButton confirmarButton;
     private JButton atrasButton;
+    private JButton limpiarButton;
 
-    // Atributos no componentes
-    private PreguntasList modelo;
-    //private FileHandler fileHandler;
-    private int currentQuestionIndex;
-    // Agregar atributo InicioGUI llamado parentWindow
-    private InicioGUI parentWindow;
+    private InicioVista parentWindow;
 
     /**
- * Constructor de la clase AdminGUI.
- * 
- * @param modelo la lista de preguntas existente.
- * @param parentWindow el objeto InicioGUI que se utilizará como ventana padre.
- */
-    public AdminGUI(PreguntasList modelo, InicioGUI parentWindow) {
-        this.modelo = modelo;
-        //this.fileHandler = fileHandler;
-        this.currentQuestionIndex = 0;
+     * Constructor de la clase AdminVista.
+     * 
+     * @param modelo la lista de preguntas existente.
+     * @param parentWindow el objeto InicioVista que se utilizará como ventana padre.
+     */
+    public AdminVista(InicioVista parentWindow) {
         this.parentWindow = parentWindow; // Asignar el objeto recibido al atributo parentWindow
 
         initComponents();
@@ -71,7 +60,7 @@ public class AdminGUI extends JFrame {
         preguntaPanel.setPreferredSize(new Dimension(600, 50)); // especificar una altura fija
 
         // Configuración de los componentes
-        idLabel = new JLabel("ID de pregunta: " + (modelo.size()+1));
+        idLabel = new JLabel("ID de pregunta: " + (1001));
         idLabel.setBounds(20, 20, 200, 20);
         preguntaPanel.add(idLabel, BorderLayout.CENTER);
 
@@ -109,10 +98,14 @@ public class AdminGUI extends JFrame {
         confirmarButton.setBounds(260, 170, 100, 30);
 
         atrasButton = new JButton("Atrás");
-        atrasButton.setBounds(20, 170, 100, 30);
+        atrasButton.setBounds(100, 170, 100, 30);
+
+        limpiarButton = new JButton("Limpiar");
+        limpiarButton.setBounds(0, 170, 100, 30);
 
         actionPanel.add(confirmarButton);
         actionPanel.add(atrasButton);
+        actionPanel.add(limpiarButton);
 
         add(actionPanel, BorderLayout.SOUTH);
 
@@ -131,11 +124,15 @@ public class AdminGUI extends JFrame {
     /**
      * Actualiza el texto del ID de la pregunta en la vista.
      */
-    public void actualizarIdLabel() {
-        idLabel.setText("ID de pregunta: " + (currentQuestionIndex + 1));
+    public void actualizarIdLabel(int tam) {
+        idLabel.setText("ID de pregunta: " + (tam + 1));
     }
 
-    public InicioGUI getParentWindow() {
+    /*public FileHandler<Pregunta> getFileHandler() {
+        return fileHandler;
+    }*/
+
+    public InicioVista getParentWindow() {
         return parentWindow;
     }
 
@@ -145,6 +142,10 @@ public class AdminGUI extends JFrame {
 
     public JButton getAtrasButton() {
         return atrasButton;
+    }
+
+    public JButton getLimpiarButton() {
+        return limpiarButton;
     }
 
     public JTextField getPreguntaField() {
@@ -169,17 +170,6 @@ public class AdminGUI extends JFrame {
     }
 
     /**
-     * Devuelve el índice de la pregunta actual.
-     * 
-     * @return el índice de la pregunta actual.
-     */
-    public int getCurrentQuestionIndex() {
-        return currentQuestionIndex;
-    }
-
-
-
-    /**
      * Muestra un mensaje de error en la interfaz gráfica.
      * @param mensaje El mensaje de error a mostrar.
      */
@@ -197,36 +187,24 @@ public class AdminGUI extends JFrame {
     }
 
     /**
-     * Actualiza el índice de la pregunta actual en la vista.
-     * 
-     * @param index el nuevo índice de la pregunta actual.
-     */
-    public void setCurrentQuestionIndex(int index) {
-        this.currentQuestionIndex = index;
-    }
-
-    /**
      * Actualiza el campo de texto de la pregunta con la pregunta actual del modelo.
      */
     public void actualizarPreguntaField() {
-        Pregunta preguntaActual = modelo.getQuestion(currentQuestionIndex);
-        preguntaField.setText(preguntaActual.getPregunta());
+        preguntaField.setText("");
     }
 
     /**
      * Actualiza el campo de texto de opciones con las opciones de la pregunta actual del modelo.
      */
     public void actualizarOpcionesField() {
-        Pregunta preguntaActual = modelo.getQuestion(currentQuestionIndex);
-        opcionesField.setText(String.join(",", preguntaActual.getOpciones()));
+        opcionesField.setText("");
     }
 
     /**
      * Actualiza el campo de texto de la respuesta correcta con la respuesta correcta de la pregunta actual del modelo.
      */
     public void actualizarCorrectaField() {
-        Pregunta preguntaActual = modelo.getQuestion(currentQuestionIndex);
-        correctaField.setText(preguntaActual.getCorrecta());
+        correctaField.setText("");
     }
     
 

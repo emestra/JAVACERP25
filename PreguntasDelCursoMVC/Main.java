@@ -1,7 +1,13 @@
 package PreguntasDelCursoMVC;
-import java.io.IOException;
 
-import PreguntasDelCurso.PreguntasList;
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
+
+import PreguntasDelCursoMVC.Controlador.InicioControlador;
+import PreguntasDelCursoMVC.Modelo.Pregunta;
+import PreguntasDelCursoMVC.Vista.InicioVista;
+
 
 /**
  * @file Main.java
@@ -20,32 +26,17 @@ public class Main {
     /**
      * @brief Método principal que inicia la ejecución del programa.
      * @param args Parámetros de línea de comandos (no se utilizan).
+     * @throws Exception
      */
     public static void main(String[] args) {
         
-        // Crear instancia de FileHandler para cargar las preguntas desde preguntas.txt
-        FileHandler fileHandler = new FileHandler("PreguntasDelCursoMVC\\preguntas.data");
-        
-        // Crear instancia de QuestionList para manejar las preguntas en memoria
-        PreguntasList modelo = new PreguntasList();
+        // Crear instancia de FileHandler para cargar las preguntas desde preguntas.data
+        FileHandler<Pregunta> fileHandler = new FileHandler<Pregunta>("PreguntasDelCursoMVC\\preguntas.data");
 
-       /*  // Limpio el archivo
-        try {
-            fileHandler.limpiarArchivo();
-        } catch (IOException e) {
-            // TODO Auto-generated catch block
-            e.printStackTrace();
-        }*/
+        List<Pregunta> modelo = new ArrayList<>();        
 
-        /* 
-        // Cargar la primera pregunta
-        String questionText1 = "1|¿Cuál es el concepto fundamental de la Programación Orientada a Objetos?|Objetos|Variables, Métodos, Clases, Interfaces|1";
-        Pregunta question1 = Pregunta.fromString(questionText1);
-        modelo.addQuestion(question1);*/
-        
-        // Cargar las preguntas desde preguntas.txt
         try {
-            modelo = fileHandler.readQuestions();
+            modelo = fileHandler.fileToList();
         } catch (ClassNotFoundException e) {
             // TODO Auto-generated catch block
             e.printStackTrace();
@@ -54,13 +45,25 @@ public class Main {
             e.printStackTrace();
         }
 
-        InicioGUI vistaInicio = new InicioGUI(modelo, fileHandler);
-        //AdminGUI vistaAdmin = new AdminGUI(modelo, vistaInicio);
+        System.out.println("El tamanio es " + modelo.size());
 
-        //InicioControlador controladorInicio = new InicioControlador(vistaInicio, vistaAdmin);
-        //AdminControlador controladorAdmin = new AdminControlador(modelo, vistaAdmin);
+        /*InicioVista vistaInicio = new InicioVista();
+        vistaInicio.setVisible(true);*/
 
-        vistaInicio.setVisible(true);
+         
+        InicioVista vistaInicio = new InicioVista(fileHandler);
+        InicioControlador controlador = new InicioControlador(modelo, vistaInicio);
+        vistaInicio.setControlador(controlador);
 
+        /* 
+        // Crear instancia de AdminControlador y mostrar vista AdminVista
+        AdminVista vistaAdmin = new AdminVista(fileHandler);
+        AdminControlador controladorAdmin = new AdminControlador(vistaAdmin);
+        // Asociar el controlador como listener de los componentes de la vista
+        vistaAdmin.getConfirmarButton().addActionListener(controladorAdmin);
+        vistaAdmin.getAtrasButton().addActionListener(controladorAdmin);
+        vistaAdmin.getLimpiarButton().addActionListener(controladorAdmin);*/
+
+        
     }
 }

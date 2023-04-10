@@ -2,7 +2,7 @@ package POOConceptos;
 
 /**
  * @file Concepto.java
- * @brief Clase para representar una pregunta en el juego de preguntas y respuestas.
+ * @brief Clase para representar una concepto en el juego de preguntas y respuestas.
  * @date 20/03/2023
  * @version 1.0
  */
@@ -11,101 +11,101 @@ package POOConceptos;
 
  /**
   * @class Concepto
-  * @brief Clase para representar una pregunta en el juego de preguntas y respuestas.
+  * @brief Clase para representar una concepto en el juego de preguntas y respuestas.
   * Implementa Serializable para poder ser guardada en un archivo.
   */
  public class Concepto implements Serializable{
-    private int idPregunta; // índice de la pregunta
-    private String pregunta; // pregunta
-    private String correcta; // respuesta correcta
-    private String[] opciones; // opciones posibles
+    private int idConcepto; // índice de la concepto
+    private String concepto; // concepto
+    private String descripcion; // respuesta descripcion
+    private String[] etiquetas; // etiquetas posibles
 
     /**
-     * Constructor para la clase pregunta.
-     * @param idPregunta int que representa el numero de pregunta
-     * @param pregunta String que representa la pregunta.
-     * @param opciones String[] que contiene las opciones posibles.
-     * @param answerIndex int que representa el índice de la respuesta correcta en el arreglo opciones.
+     * Constructor para la clase concepto.
+     * @param idConcepto int que representa el numero de concepto
+     * @param concepto String que representa la concepto.
+     * @param etiquetas String[] que contiene las etiquetas posibles.
+     * @param answerIndex int que representa el índice de la respuesta descripcion en el arreglo etiquetas.
      */
-    public Concepto(int idPregunta, String pregunta, String correcta, String[] opciones) {
-        this.idPregunta = idPregunta;
-        this.pregunta = pregunta;
-        this.correcta = correcta;
-        this.opciones = opciones;
+    public Concepto(int idConcepto, String concepto, String descripcion, String[] etiquetas) {
+        this.idConcepto = idConcepto;
+        this.concepto = concepto;
+        this.descripcion = descripcion;
+        this.etiquetas = etiquetas;
     }
 
     /**
-     * Getter para obtener el id de la pregunta.
-     * @return int que representa el id de la pregunta.
+     * Getter para obtener el id de la concepto.
+     * @return int que representa el id de la concepto.
      */
-    public int getIdPregunta() {
-        return idPregunta;
+    public int getIdConcepto() {
+        return idConcepto;
     }
 
     /**
-     * Setter para establecer el id de la pregunta.
-     * @param idPregunta int que representa el id de la pregunta.
+     * Setter para establecer el id de la concepto.
+     * @param idConcepto int que representa el id de la concepto.
      */
-    public void setIdPregunta(int idPregunta) {
-        this.idPregunta = idPregunta;
+    public void setIdConcepto(int idConcepto) {
+        this.idConcepto = idConcepto;
     }
 
     /**
-     * Getter para obtener la pregunta.
-     * @return String que representa la pregunta.
+     * Getter para obtener la concepto.
+     * @return String que representa la concepto.
      */
-    public String getPregunta() {
-        return pregunta;
+    public String getConcepto() {
+        return concepto;
     }
 
     /**
-     * Setter para establecer la pregunta.
-     * @param pregunta String que representa la pregunta.
+     * Setter para establecer la concepto.
+     * @param concepto String que representa la concepto.
      */
-    public void setPregunta(String pregunta) {
-        this.pregunta = pregunta;
+    public void setConcepto(String concepto) {
+        this.concepto = concepto;
     }
 
     /**
-     * Getter para obtener la respuesta correcta.
-     * @return String que representa la respuesta correcta.
+     * Getter para obtener la respuesta descripcion.
+     * @return String que representa la respuesta descripcion.
      */
-    public String getCorrecta() {
-        return correcta;
+    public String getDescripcion() {
+        return descripcion;
     }
 
     /**
-     * Setter para establecer la respuesta correcta.
-     * @param correcta String que representa la respuesta correcta.
+     * Setter para establecer la respuesta descripcion.
+     * @param descripcion String que representa la respuesta descripcion.
      */
-    public void setCorrecta(String correcta) {
-        this.correcta = correcta;
+    public void setDescripcion(String descripcion) {
+        this.descripcion = descripcion;
     }
 
     /**
-     * Getter para obtener las opciones posibles.
-     * @return String[] que contiene las opciones posibles.
+     * Getter para obtener las etiquetas posibles.
+     * @return String[] que contiene las etiquetas posibles.
      */
-    public String[] getOpciones() {
-        return opciones;
+    public String[] getEtiquetas() {
+        return etiquetas;
     }
 
 
-    public static Concepto fromString(String PreguntaString) {
+    public static Concepto fromString(String ConceptoString) {
         // Separar la cadena en los diferentes campos
-        String[] fields = PreguntaString.split("\\|");
+        String[] fields = ConceptoString.split("\\|");
 
-        System.out.println("ID de pregunta: " + fields[0]);
+        System.out.println("ID de concepto: " + fields[0]);
         System.out.println("Concepto: " + fields[1]);
-        System.out.println("Correcta: " + fields[2]);
-        System.out.println("Opciones: " + fields[3]);
+        System.out.println("Descripcion: " + fields[2]);
+        System.out.println("Etiquetas: " + fields[3]);
     
-        // Crear la pregunta a partir de los campos
-        int idPregunta = Integer.parseInt(fields[0]);
-        String pregunta = fields[1];
-        String correcta = fields[2];
-        String[] opciones = fields[3].split(",");
+        // Crear la concepto a partir de los campos
+        int idConcepto = Integer.parseInt(fields[0]);
+        String concepto = fields[1];
+        String descripcion = fields[2];
+        String[] etiquetas = fields[3].split(",");
     
-        return new Concepto(idPregunta, pregunta, correcta, opciones);
+        return new Concepto(idConcepto, concepto, descripcion, etiquetas);
     }
 }

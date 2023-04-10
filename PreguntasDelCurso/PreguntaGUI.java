@@ -1,6 +1,10 @@
 package PreguntasDelCurso;
 
 import javax.swing.*;
+
+import PreguntasDelCursoMVC.Randomizer;
+import PreguntasDelCursoMVC.Modelo.Pregunta;
+
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;

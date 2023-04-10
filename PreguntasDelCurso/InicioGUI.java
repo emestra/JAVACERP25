@@ -3,6 +3,9 @@ package PreguntasDelCurso;
 import java.awt.event.*;
 import javax.swing.*;
 
+import PreguntasDelCursoMVC.FileHandler;
+import PreguntasDelCursoMVC.Modelo.Pregunta;
+
 /**
  * @file InicioGUI.java
  * @brief Clase para el menú principal de la aplicación.
@@ -16,7 +19,7 @@ public class InicioGUI extends JFrame implements ActionListener {
     //private JButton adminButton;
     //private JButton preguntasButton;
     private PreguntasList questionList;
-    private FileHandler fileHandler;
+    private FileHandler<Pregunta> fileHandler;
     
     /**
      * Constructor para la clase MenuGUI.
@@ -24,7 +27,7 @@ public class InicioGUI extends JFrame implements ActionListener {
      * @param questionList La lista de preguntas.
      * @param fileHandler El manejador de archivos de preguntas.
      */
-    public InicioGUI(PreguntasList questionList, FileHandler fileHandler) {
+    public InicioGUI(PreguntasList questionList, FileHandler<Pregunta> fileHandler) {
         super("Menú Principal");
         this.questionList = questionList;
         this.fileHandler = fileHandler;

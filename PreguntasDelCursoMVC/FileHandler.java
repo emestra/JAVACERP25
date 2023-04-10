@@ -1,5 +1,4 @@
 package PreguntasDelCursoMVC;
-import PreguntasDelCurso.PreguntasList;
 
 /**
  * @file FileHandler.java
@@ -10,12 +9,14 @@ import PreguntasDelCurso.PreguntasList;
  */
 
  import java.io.*;
+import java.util.ArrayList;
+import java.util.List;
  
  /**
   * @class FileHandler
   * @brief Clase para manejar archivos de preguntas
   */
-public class FileHandler {
+public class FileHandler<T> {
     
     private String filename;
     
@@ -35,31 +36,32 @@ public class FileHandler {
      * @throws IOException si ocurre un error de entrada/salida.
      * @throws ClassNotFoundException si la clase de algún objeto serializado no puede ser encontrada.
      */
-    public PreguntasList readQuestions() throws IOException, ClassNotFoundException {
-        PreguntasList questionList = new PreguntasList();
+    @SuppressWarnings("unchecked")
+    public List<T> fileToList() throws IOException, ClassNotFoundException {
+        List<T> miLista = new ArrayList<T>();
         
         FileInputStream fileInputStream = new FileInputStream(filename);
         ObjectInputStream objectInputStream = new ObjectInputStream(fileInputStream);
         
-        questionList = (PreguntasList) objectInputStream.readObject();
+        miLista = (List<T>) objectInputStream.readObject();
         
         objectInputStream.close();
         fileInputStream.close();
         
-        return questionList;
+        return miLista;
     }
     
     /**
      * Escribe las preguntas en el archivo.
      * 
-     * @param questionList la lista de preguntas a escribir.
+     * @param miLista la lista de preguntas a escribir.
      * @throws IOException si ocurre un error de entrada/salida.
      */
-    public void writeQuestions(PreguntasList questionList) throws IOException {
+    public void listToFile(List<T> miLista) throws IOException {
         FileOutputStream fileOutputStream = new FileOutputStream(filename);
         ObjectOutputStream objectOutputStream = new ObjectOutputStream(fileOutputStream);
         
-        objectOutputStream.writeObject(questionList);
+        objectOutputStream.writeObject(miLista);
         
         objectOutputStream.close();
         fileOutputStream.close();

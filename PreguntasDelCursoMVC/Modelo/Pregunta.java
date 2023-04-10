@@ -1,4 +1,4 @@
-package PreguntasDelCurso;
+package PreguntasDelCursoMVC.Modelo;
 
 /**
  * @file Pregunta.java
@@ -19,6 +19,10 @@ package PreguntasDelCurso;
     private String pregunta; // pregunta
     private String correcta; // respuesta correcta
     private String[] opciones; // opciones posibles
+
+    public void setOpciones(String[] opciones) {
+        this.opciones = opciones;
+    }
 
     /**
      * Constructor para la clase pregunta.

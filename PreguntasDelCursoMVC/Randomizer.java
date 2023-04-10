@@ -1,4 +1,4 @@
-package PreguntasDelCurso;
+package PreguntasDelCursoMVC;
 
 import java.util.ArrayList;
 import java.util.LinkedList;
@@ -28,7 +28,7 @@ public class Randomizer<T> {
      * @param list lista de elementos
      * @return elemento aleatorio de la lista
      */
-    public T getRandomElement(List<T> list) {
+    public  T getRandomElement(List<T> list) {
         int index = getRandomIndex(0, list.size() - 1);
         return list.get(index);
     }

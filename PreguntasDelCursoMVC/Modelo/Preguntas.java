@@ -1,85 +1,56 @@
-package PreguntasDelCurso;
+package PreguntasDelCursoMVC.Modelo;
 
 import java.io.Serializable;
-
-/**
- * @file PreguntasList.java
- * @brief Clase que representa una lista de preguntas para ser utilizada en un juego de preguntas y respuestas.
- */
-
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Iterator;
 import java.util.List;
 import java.util.ListIterator;
 
-import PreguntasDelCursoMVC.Randomizer;
-import PreguntasDelCursoMVC.Modelo.Pregunta;
+public class Preguntas implements Serializable, List<Pregunta> {
+    private List<Pregunta> listaPreguntas;
+    
+    public Preguntas() {
+        this.listaPreguntas = new ArrayList<Pregunta>();
+    }
+    
+    public List<Pregunta> getListaPreguntas() {
+        return listaPreguntas;
+    }
+    
+    public void setListaPreguntas(List<Pregunta> listaPreguntas) {
+        this.listaPreguntas = listaPreguntas;
+    }
+    
+    public void addPregunta(Pregunta pregunta) {
+        listaPreguntas.add(pregunta);
+    }
+    
+    public void removePregunta(int index) {
+        listaPreguntas.remove(index);
+    }
 
- /**
-  * @class PreguntasList
-  * @brief Clase que representa una lista de preguntas para ser utilizada en un juego de preguntas y respuestas.
-  */
- public class PreguntasList implements Serializable, List<Pregunta>  {
-     private ArrayList<Pregunta> questionList; 
- 
-     /**
-      * @brief Constructor para la clase PreguntasList.
-      */
-     public PreguntasList() {
-         questionList = new ArrayList<>();
-     }
- 
-     /**
-      * @brief Método para agregar una pregunta a la lista.
-      * @param q La pregunta a agregar a la lista.
-      */
-     public void addQuestion(Pregunta q) {
-         questionList.add(q);
-     }
- 
-     /**
-      * @brief Método para eliminar una pregunta de la lista.
-      * @param q La pregunta a eliminar de la lista.
-      */
-     public void removeQuestion(Pregunta q) {
-         questionList.remove(q);
-     }
- 
-     /**
-      * @brief Método para obtener una pregunta de la lista.
-      * @param index El índice de la pregunta a obtener.
-      * @return La pregunta en el índice especificado.
-      */
-     public Pregunta getQuestion(int index) {
-         return questionList.get(index);
-     }
- 
-     /**
-      * @brief Método para obtener el número de preguntas en la lista.
-      * @return El número de preguntas en la lista.
-      */
-     public int size() {
-         return questionList.size();
-     }
- 
-     /**
-      * @brief Método para obtener una pregunta aleatoria de la lista.
-      * @return Una pregunta aleatoria de la lista.
-      */
-     public Pregunta getRandomQuestion() {
-         int randomIndex = Randomizer.getRandomIndex(0, questionList.size() - 1);
-         return questionList.get(randomIndex);
-     }
- 
-     /**
-      * @brief Método para verificar si una pregunta ya está en la lista.
-      * @param q La pregunta a verificar.
-      * @return Verdadero si la pregunta está en la lista, falso en caso contrario.
-      */
-     public boolean containsQuestion(Pregunta q) {
-         return questionList.contains(q);
-     }
+    public void removePregunta(Pregunta pregunta) {
+        listaPreguntas.remove(pregunta);
+    }
+    
+    public void updatePregunta(int index, Pregunta pregunta) {
+        listaPreguntas.set(index, pregunta);
+    }
+    
+    public Pregunta getPregunta(int index) {
+        return listaPreguntas.get(index);
+    }
+
+    public int getCantPreguntas() {
+        return listaPreguntas.size();
+    }
+
+    @Override
+    public int size() {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'size'");
+    }
 
     @Override
     public boolean isEmpty() {
@@ -115,12 +86,6 @@ import PreguntasDelCursoMVC.Modelo.Pregunta;
     public boolean add(Pregunta e) {
         // TODO Auto-generated method stub
         throw new UnsupportedOperationException("Unimplemented method 'add'");
-    }
-
-    @Override
-    public boolean remove(Object o) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'remove'");
     }
 
     @Override
@@ -212,5 +177,10 @@ import PreguntasDelCursoMVC.Modelo.Pregunta;
         // TODO Auto-generated method stub
         throw new UnsupportedOperationException("Unimplemented method 'subList'");
     }
- }
- 
+
+    @Override
+    public boolean remove(Object o) {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'remove'");
+    }
+}

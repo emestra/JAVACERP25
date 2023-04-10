@@ -2,6 +2,9 @@ package PreguntasDelCurso;
 
 import java.io.IOException;
 
+import PreguntasDelCursoMVC.FileHandler;
+import PreguntasDelCursoMVC.Modelo.Pregunta;
+
 /**
  * @file Main.java
  * @brief Clase principal del programa que permite crear, modificar y eliminar preguntas.
@@ -23,7 +26,7 @@ public class Main {
     public static void main(String[] args) {
         
         // Crear instancia de FileHandler para cargar las preguntas desde preguntas.txt
-        FileHandler fileHandler = new FileHandler("PreguntasDelCurso\\preguntas.data");
+        FileHandler<Pregunta> fileHandler = new FileHandler<Pregunta>("PreguntasDelCurso\\preguntas.data");
         
         // Crear instancia de QuestionList para manejar las preguntas en memoria
         PreguntasList questionList = new PreguntasList();
@@ -46,7 +49,7 @@ public class Main {
         
         // Cargar las preguntas desde preguntas.txt
         try {
-            questionList = fileHandler.readQuestions();
+            questionList = (PreguntasList) fileHandler.fileToList();
         } catch (ClassNotFoundException e) {
             // TODO Auto-generated catch block
             e.printStackTrace();

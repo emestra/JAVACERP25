@@ -1,23 +1,29 @@
 package POOConceptos;
 
 import javax.swing.*;
+
+import PreguntasDelCursoMVC.FileHandler;
+import PreguntasDelCursoMVC.Randomizer;
+
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
- * @file UserGUI.java
+ * @file ConceptoVista.java
  * @brief Clase que define la interfaz gráfica de usuario para mostrar preguntas y opciones de respuesta.
  * @date 2023-03-22
  * @version 1.0
  */
 
 /**
- * @class UserGUI
+ * @class ConceptoVista
  * @brief Clase que define la interfaz gráfica de usuario para mostrar preguntas y opciones de respuesta.
  */
-public class UserGUI extends JFrame implements ActionListener {
-    private ConceptosList listaConceptos;
+public class ConceptoVista extends JFrame implements ActionListener {
     private JLabel idLabel;
     private JLabel preguntaLabel;
     private JLabel opcionesLabel;
@@ -26,8 +32,9 @@ public class UserGUI extends JFrame implements ActionListener {
     private JButton confirmarButton;
     private JButton atrasButton;
 
-    // Agregar atributo InicioGUI llamado parentWindow
-    private InicioGUI parentWindow;
+    private List<Concepto> modelo;
+    // Agregar atributo InicioVista llamado parentWindow
+    private InicioVista parentWindow;
 
     /**
      * Botones para seleccionar las opciones de respuesta.
@@ -39,11 +46,24 @@ public class UserGUI extends JFrame implements ActionListener {
 
     /**
      * Constructor de la clase AdminGUI.
-     * @param listaConceptos la lista de preguntas existente.
+     * @param modelo la lista de preguntas existente.
      * @param fileHandler el manejador de archivos a utilizar.
      */
-    public UserGUI(ConceptosList listaConceptos, InicioGUI parentWindow) {
-        this.listaConceptos = listaConceptos;
+    public ConceptoVista(FileHandler<Concepto> fileHandler, InicioVista parentWindow) {
+        List<Concepto> modelo = new ArrayList<Concepto>();
+        
+        // Cargar las preguntas desde preguntas.txt
+        try {
+            modelo = fileHandler.fileToList();
+        } catch (ClassNotFoundException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        } catch (IOException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
+        
+        this.modelo = modelo;
         this.parentWindow = parentWindow; // Asignar el objeto recibido al atributo parentWindow
 
 
@@ -64,12 +84,12 @@ public class UserGUI extends JFrame implements ActionListener {
         idLabel.setBounds(20, 20, 200, 20);
         preguntaPanel.add(idLabel, BorderLayout.CENTER);
 
-        preguntaLabel = new JLabel("Pregunta:");
+        preguntaLabel = new JLabel("Concepto:");
         preguntaLabel.setBounds(20, 50, 80, 20);
         preguntaPanel.add(preguntaLabel, BorderLayout.CENTER);
 
 
-        opcionesLabel = new JLabel("Opciones:");
+        opcionesLabel = new JLabel("Etiquetas:");
         opcionesLabel.setBounds(20, 80, 80, 20);
         preguntaPanel.add(opcionesLabel, BorderLayout.CENTER);
 
@@ -79,7 +99,6 @@ public class UserGUI extends JFrame implements ActionListener {
 
 
         add(preguntaPanel, BorderLayout.CENTER);
-        
 
         // Crear el panel de respuestas
         JPanel answerPanel = new JPanel();
@@ -99,10 +118,14 @@ public class UserGUI extends JFrame implements ActionListener {
         add(answerPanel, BorderLayout.SOUTH);
 
         //Primer pregunta
-        idLabel.setText("ID de pregunta: " + listaConceptos.size());
-        Pregunta currentQuestion = listaConceptos.getRandomQuestion();
-        String correctAnswer = currentQuestion.getCorrecta();
-        preguntaLabel.setText(currentQuestion.getPregunta());
+        // Crear un objeto Randomizer para obtener un elemento aleatorio de la lista
+        Randomizer<Concepto> randomizer = new Randomizer<>();
+        // Obtener un elemento aleatorio de la lista de preguntas
+        Concepto currentQuestion = randomizer.getRandomElement(modelo);
+        
+        idLabel.setText("ID de pregunta: " + currentQuestion.getIdConcepto());
+        String correctAnswer = currentQuestion.getDescripcion();
+        preguntaLabel.setText(currentQuestion.getConcepto());
         int correctButtonIndex = Randomizer.getRandomIndex(0, answerButtons.length - 1);
         //int correctButtonIndex = (int) (Math.random() * (answerButtons.length));
         answerButtons[correctButtonIndex].setText(correctAnswer);
@@ -111,10 +134,7 @@ public class UserGUI extends JFrame implements ActionListener {
             if (i == correctButtonIndex) {
                 continue;
             }
-            String option = currentQuestion.getOpciones()[optionIndex];
-            /*if (option.equals(correctAnswer)) {
-                optionIndex++;
-            }*/
+            String option = currentQuestion.getEtiquetas()[optionIndex];
             answerButtons[i].setText(option);  
 
             optionIndex++;
@@ -153,10 +173,11 @@ public class UserGUI extends JFrame implements ActionListener {
     @Override
     public void actionPerformed(ActionEvent e) {
         if (e.getSource() == siguienteButton) {
-            Pregunta currentQuestion = listaConceptos.getRandomQuestion();
-            String correctAnswer = currentQuestion.getCorrecta();
-            idLabel.setText("ID de pregunta: " + currentQuestion.getIdPregunta());
-            preguntaLabel.setText(currentQuestion.getPregunta());
+            int numPregunta = Randomizer.getRandomIndex(0, modelo.size() - 1);
+            Concepto currentQuestion = modelo.get(numPregunta);
+            String correctAnswer = currentQuestion.getDescripcion();
+            idLabel.setText("ID de pregunta: " + currentQuestion.getIdConcepto());
+            preguntaLabel.setText(currentQuestion.getConcepto());
             int correctButtonIndex = Randomizer.getRandomIndex(0, answerButtons.length - 1);
             this.correctIndex = correctButtonIndex;
             //int correctButtonIndex = (int) (Math.random() * (answerButtons.length));
@@ -166,7 +187,7 @@ public class UserGUI extends JFrame implements ActionListener {
                 if (i == correctButtonIndex) {
                     continue;
                 }
-                String option = currentQuestion.getOpciones()[optionIndex];
+                String option = currentQuestion.getEtiquetas()[optionIndex];
                 if (option.equals(correctAnswer)) {
                     optionIndex++;
                 }
@@ -179,17 +200,17 @@ public class UserGUI extends JFrame implements ActionListener {
         } else if (e.getSource() == confirmarButton) {
             int selectedAnswer = Integer.parseInt(buttonGroup.getSelection().getActionCommand());
                 if (selectedAnswer==this.correctIndex){
-                    JOptionPane.showMessageDialog(UserGUI.this, "¡Correcto!", "Resultado", JOptionPane.INFORMATION_MESSAGE);
+                    JOptionPane.showMessageDialog(ConceptoVista.this, "¡Correcto!", "Resultado", JOptionPane.INFORMATION_MESSAGE);
                 } else {
-                    JOptionPane.showMessageDialog(UserGUI.this, "¡Incorrecto!", "Resultado", JOptionPane.ERROR_MESSAGE);
+                    JOptionPane.showMessageDialog(ConceptoVista.this, "¡Incorrecto!" + selectedAnswer + this.correctIndex , "Resultado", JOptionPane.ERROR_MESSAGE);
                 }
             
         } else if (e.getSource() == atrasButton) {
-            parentWindow.setVisible(true); // Hacer visible la ventana InicioGUI
+            parentWindow.setVisible(true); // Hacer visible la ventana InicioVista
             dispose();
         }
-        pack(); // Ajustar tamaño al contenido
-        setResizable(false); // No permitir redimensionar
+        //pack(); // Ajustar tamaño al contenido
+        //setResizable(false); // No permitir redimensionar
     }
 
         

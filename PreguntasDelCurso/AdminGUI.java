@@ -15,6 +15,9 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
+import PreguntasDelCursoMVC.FileHandler;
+import PreguntasDelCursoMVC.Modelo.Pregunta;
+
 /**
  * @file AdminGUI.java
  * @brief Clase para representar la interfaz gráfica de administración de preguntas.
@@ -23,7 +26,7 @@ import javax.swing.JTextField;
  */
 public class AdminGUI extends JFrame implements ActionListener {
     private PreguntasList questionList;
-    private FileHandler fileHandler;
+    private FileHandler<Pregunta> fileHandler;
     private int currentQuestionIndex;
 
     private JLabel idLabel;
@@ -44,7 +47,7 @@ public class AdminGUI extends JFrame implements ActionListener {
      * @param questionList la lista de preguntas existente.
      * @param fileHandler el manejador de archivos a utilizar.
      */
-    public AdminGUI(PreguntasList questionList, FileHandler fileHandler, InicioGUI parentWindow) {
+    public AdminGUI(PreguntasList questionList, FileHandler<Pregunta> fileHandler, InicioGUI parentWindow) {
         this.questionList = questionList;
         this.fileHandler = fileHandler;
         this.currentQuestionIndex = 0;
@@ -155,7 +158,7 @@ public class AdminGUI extends JFrame implements ActionListener {
                 // Agregar la pregunta a la lista y escribir la lista en el archivo
                 questionList.addQuestion(nuevaPregunta);
                 try {
-                    fileHandler.writeQuestions(questionList);
+                    fileHandler.listToFile(questionList);
                 } catch (IOException ex) {
                     JOptionPane.showMessageDialog(this, "Ocurrió un error al escribir en el archivo: " + ex.getMessage(),
                             "Error", JOptionPane.ERROR_MESSAGE);
