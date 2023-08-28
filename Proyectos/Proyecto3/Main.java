@@ -1,4 +1,4 @@
-package Proyecto3;
+package Proyectos.Proyecto3;
 
 import java.util.Scanner;
 
@@ -54,9 +54,10 @@ public class Main {
             material1.setAnioPublicacion(1922);
             material1.setTitulo("F2Parcial");;
             //material1.mostrar();
+            biblioteca.agregarMaterial(material1);
         }
         
-        biblioteca.agregarMaterial(material1);
+        
 
         System.out.println("\nFINAL ACTUALIZADOS");
         biblioteca.mostrarMateriales();
