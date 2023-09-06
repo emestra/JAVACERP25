@@ -1,4 +1,4 @@
-package Proyectos.Proyecto3;
+package Proyectos.Proyecto4;
 
 import java.util.Scanner;
 
@@ -16,15 +16,17 @@ public class Main {
         Autor autor1 = new Autor("Antoine de Saint-Exupéry", "Francés", "29/06/1900");
         
         // Creación de un libro y una revista usando el autor previamente creado
-        Libro libro1 = new Libro("El Principito", autor1, 1943, "Infantil", "12345");
+        Libro libro1 = new Libro("El Principito", "Infantil",autor1, 1943,  "12345");
         Revista revista1 = new Revista("Ciencia Hoy", autor1, 2020, 150, "45678");
         Revista revista2 = new Revista("F1Total", autor1, 2022, 33, "333333");
         
         // Creación de la biblioteca y agregado de los materiales
         Biblioteca biblioteca = new Biblioteca();
-        biblioteca.agregarMaterial(libro1);
-        biblioteca.agregarMaterial(revista1);
-        biblioteca.agregarMaterial(revista2);
+        biblioteca.agregarMaterial(libro1.getGenero(),libro1);
+        biblioteca.agregarMaterial("Revista",revista1);
+        biblioteca.agregarMaterial("Revista",revista2);
+        biblioteca.agregarMaterial("Revista",revista2);
+        
         
         // Mostrar los materiales de la biblioteca (polimorfismo en acción)
         System.out.println("Materiales en la biblioteca:");
@@ -36,13 +38,14 @@ public class Main {
         revista1.mostrarDetalle();
 
         // Eliminar y volver a mostrar
-        System.out.println("\nMATERIALES BIBLIOGRAFICOS ACTUALIZADOS");
-        biblioteca.eliminarMaterial(revista1);
-        biblioteca.mostrarMateriales();
+        /*System.out.println("\nMATERIALES BIBLIOGRAFICOS ACTUALIZADOS");
+        biblioteca.eliminarMaterial("Revista",revista1);
+        biblioteca.mostrarMateriales();*/
         
         // Buscamos un material en específico
         System.out.println("\nBUSCAMOS POR TITULO UN MATERIAL BIBLIO");
         
+
         Scanner scan = new Scanner(System.in);
         String titu = scan.nextLine();
         scan.close();
@@ -54,7 +57,7 @@ public class Main {
             material1.setAnioPublicacion(1922);
             material1.setTitulo("F2Parcial");;
             material1.mostrar();
-            biblioteca.agregarMaterial(material1);
+            biblioteca.agregarMaterial("Revista",material1);
         }
         
         
