@@ -19,7 +19,7 @@ public class Main
     {
         System.out.println( "Comencemos..." );
         // Crear instancia de FileHandler para cargar las preguntas desde preguntas.data
-        FileHandler<Pregunta> fileHandler = new FileHandler<Pregunta>("D:\\_VSCode\\_Programacion3-JAVA\\Curso-JAVA\\Proyectos\\PreguntasDelCursoMVC\\preguntas.data");
+        FileHandler<Pregunta> fileHandler = new FileHandler<Pregunta>("D:\\_VSCode\\_Programacion3-JAVA\\Curso-JAVA\\Proyectos\\pooshowcase\\src\\main\\resources\\preguntas.data");
 
         List<Pregunta> modelo = new ArrayList<>();        
 
