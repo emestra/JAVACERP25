@@ -5,6 +5,8 @@
  * @date 19/03/2023
  */
 
+ 
+
  public class MiPrimerEjemplo {
    public static void main(String[] args) {
        // Creación del objeto empleado
@@ -14,5 +16,7 @@
        System.out.println("Nombre: " + empleado1.getNombre());
        System.out.println("ID: " + empleado1.getId());
        System.out.println("Salario mensual: $" + empleado1.getSalarioMensual());
+
+       //System.out.println("Hola nada mas");
    }
 }

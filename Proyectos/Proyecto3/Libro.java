@@ -1,4 +1,4 @@
-package Proyectos.Proyecto3;
+package Proyecto3;
 
 /**
  * @file Libro.java

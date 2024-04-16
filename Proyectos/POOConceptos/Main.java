@@ -1,6 +1,6 @@
-package POOConceptos;
+package Proyectos.POOConceptos;
 
-import PreguntasDelCursoMVC.FileHandler;
+import Proyectos.PreguntasDelCursoMVC.FileHandler;
 
 /**
  * @file Main.java
@@ -23,7 +23,7 @@ public class Main {
     public static void main(String[] args) {
         
          // Crear instancia de FileHandler para cargar las preguntas desde preguntas.txt
-         FileHandler<Concepto> fileHandler = new FileHandler<Concepto>("PreguntasDelCursoMVC\\preguntas.data");
+         FileHandler<Concepto> fileHandler = new FileHandler<Concepto>("Proyectos\\PreguntasDelCursoMVC\\preguntas.data");
 
          InicioVista vistaInicio = new InicioVista(fileHandler);
  

@@ -1,4 +1,4 @@
-package PreguntasDelCursoMVC;
+package com.cerp;
 
 /**
  * @file FileHandler.java
@@ -74,7 +74,7 @@ public class FileHandler<T> {
      */
     public void limpiarArchivo() throws IOException {
         FileWriter fileWriter = new FileWriter(filename, false);
-        fileWriter.write("limpiezaaaaaa!!!");
+        fileWriter.write("");
         fileWriter.close();
     }
 

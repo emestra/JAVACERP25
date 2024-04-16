@@ -1,16 +1,16 @@
-package PreguntasDelCursoMVC.Controlador;
+package com.cerp.controlador;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
-import java.io.IOException;
 import java.util.List;
 
-import PreguntasDelCursoMVC.FileHandler;
-import PreguntasDelCursoMVC.Modelo.Pregunta;
-import PreguntasDelCursoMVC.Vista.AdminVista;
-import PreguntasDelCursoMVC.Vista.InicioVista;
+//import com.cerp.FileHandler;
+import com.cerp.modelo.Pregunta;
+import com.cerp.vista.AdminVista;
+import com.cerp.vista.InicioVista;
+
 
 /**
  * Clase para representar el controlador de la interfaz gráfica de administración de preguntas.
@@ -18,13 +18,13 @@ import PreguntasDelCursoMVC.Vista.InicioVista;
 public class AdminControlador implements ActionListener {
     private List<Pregunta> modelo;
     private AdminVista vista;
-    private InicioVista vistaInicio;
-    private FileHandler<Pregunta> fileHandlerC;
+    private InicioVista vistaInicio2;
+    //private FileHandler<Pregunta> fileHandler;
 
     public AdminControlador(List<Pregunta> modelo, AdminVista vista, InicioVista vistaInicio) {
         this.modelo = modelo;
         this.vista = vista;
-        this.vistaInicio = vistaInicio;
+        this.vistaInicio2 = vistaInicio;
 
         vista.getConfirmarButton().addActionListener(this);
         vista.getAtrasButton().addActionListener(this);
@@ -39,7 +39,7 @@ public class AdminControlador implements ActionListener {
         this.vista.addWindowListener(new WindowAdapter() {
             @Override
             public void windowClosing(WindowEvent e) {
-                vistaInicio.getControlador().guardarPreguntas();
+                vistaInicio2.getControlador().guardarPreguntas();
                 System.exit(0);
             }
         });
@@ -63,7 +63,7 @@ public class AdminControlador implements ActionListener {
 
                 this.modelo.add(nuevaPregunta);
                 //vistaInicio.getControlador().setModelo(modelo);
-                vistaInicio.getControlador().ActualizarControlador();
+                vistaInicio2.getControlador().ActualizarControlador();
                 
                 System.out.println("DENTRO de ADMIN El tamanio es " + modelo.size());
                 
@@ -75,20 +75,6 @@ public class AdminControlador implements ActionListener {
                 vista.actualizarPreguntaField();
                 vista.actualizarOpcionesField();
                 vista.actualizarCorrectaField();
-
-                //cargar archivo con la lista de preguntas
-               /* try {
-                    try {
-                        fileHandlerC.limpiarArchivo();
-                    } catch (Exception e1) {
-                        // TODO Auto-generated catch block
-                        e1.printStackTrace();
-                    }
-                    fileHandlerC.listToFile(modelo);
-                } catch (IOException e1) {
-                    // TODO Auto-generated catch block
-                    e1.printStackTrace();
-                }*/
 
                 vista.getConfirmarButton().setEnabled(true); // Volver a activar el botón de confirmar
             }
