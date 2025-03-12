@@ -20,6 +20,7 @@ import PreguntasDelCursoMVC.Vista.InicioVista;
 /**
  * @class Main
  * @brief Clase principal que permite interactuar con la aplicación de preguntas.
+ * @Author Domingo Perez
  */
 public class Main {
     
