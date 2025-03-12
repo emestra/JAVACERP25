@@ -14,7 +14,7 @@ import PreguntasDelCursoMVC.Vista.InicioVista;
  * @brief Clase principal del programa que permite crear, modificar y eliminar preguntas.
  * @date 20/03/2023
  * @version 1.0
- * @author Domingo Pérez
+ * @author Domingo E. Pérez
  */
 
 /**
