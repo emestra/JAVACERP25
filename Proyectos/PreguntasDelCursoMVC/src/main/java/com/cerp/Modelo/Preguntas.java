@@ -1,4 +1,4 @@
-package PreguntasDelCursoMVC.Modelo;
+package com.cerp.Modelo;
 
 import java.io.Serializable;
 import java.util.ArrayList;

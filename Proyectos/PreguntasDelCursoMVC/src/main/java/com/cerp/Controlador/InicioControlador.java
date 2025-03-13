@@ -1,14 +1,14 @@
-package PreguntasDelCursoMVC.Controlador;
+package com.cerp.Controlador;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.IOException;
 import java.util.List;
 
-import PreguntasDelCursoMVC.Modelo.Pregunta;
-import PreguntasDelCursoMVC.Vista.AdminVista;
-import PreguntasDelCursoMVC.Vista.InicioVista;
-import PreguntasDelCursoMVC.Vista.PreguntaVista;
+import com.cerp.Modelo.Pregunta;
+import com.cerp.Vista.AdminVista;
+import com.cerp.Vista.InicioVista;
+import com.cerp.Vista.PreguntaVista;
 
 
 public class InicioControlador implements ActionListener {

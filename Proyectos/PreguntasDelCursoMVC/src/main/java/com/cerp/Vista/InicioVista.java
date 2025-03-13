@@ -1,4 +1,4 @@
-package PreguntasDelCursoMVC.Vista;
+package com.cerp.Vista;
 
 import java.awt.FlowLayout;
 import java.awt.event.WindowAdapter;
@@ -6,9 +6,9 @@ import java.awt.event.WindowEvent;
 
 import javax.swing.*;
 
-import PreguntasDelCursoMVC.FileHandler;
-import PreguntasDelCursoMVC.Controlador.InicioControlador;
-import PreguntasDelCursoMVC.Modelo.Pregunta;
+import com.cerp.*;
+import com.cerp.Controlador.InicioControlador;
+import com.cerp.Modelo.Pregunta;
 
 /**
  * @file InicioVista.java

@@ -1,5 +1,3 @@
-package PreguntasDelCursoMVC;
-
 /**
  * @file FileHandler.java
  * @brief Clase para manejar archivos de preguntas
@@ -7,8 +5,9 @@ package PreguntasDelCursoMVC;
  * @version 1.0
  * @author Domingo Pérez
  */
+package com.cerp;
 
- import java.io.*;
+import java.io.*;
 import java.util.ArrayList;
 import java.util.List;
  

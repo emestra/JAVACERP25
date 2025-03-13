@@ -1,4 +1,4 @@
-package PreguntasDelCursoMVC.Modelo;
+package com.cerp.Modelo;
 
 /**
  * @file Pregunta.java

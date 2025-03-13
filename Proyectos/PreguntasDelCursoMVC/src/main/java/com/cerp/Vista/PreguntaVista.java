@@ -1,4 +1,4 @@
-package PreguntasDelCursoMVC.Vista;
+package com.cerp.Vista;
 
 import javax.swing.*;
 
@@ -324,15 +324,15 @@ public class PreguntaVista extends JFrame implements ActionListener {
         add(answerPanel, BorderLayout.SOUTH);
 
         //Primer pregunta
-        // Crear un objeto Randomizer para obtener un elemento aleatorio de la lista
-        Randomizer<Pregunta> randomizer = new Randomizer<>();
+        // Crear un objeto com.cerp.Randomizer para obtener un elemento aleatorio de la lista
+        com.cerp.Randomizer<Pregunta> randomizer = new com.cerp.Randomizer<>();
         // Obtener un elemento aleatorio de la lista de preguntas
         Pregunta currentQuestion = randomizer.getRandomElement(modelo);
         
         idLabel.setText("ID de pregunta: " + currentQuestion.getIdPregunta());
         String correctAnswer = currentQuestion.getCorrecta();
         preguntaLabel.setText(currentQuestion.getPregunta());
-        int correctButtonIndex = Randomizer.getRandomIndex(0, respuestaButtons.length - 1);
+        int correctButtonIndex = com.cerp.Randomizer.getRandomIndex(0, respuestaButtons.length - 1);
         //int correctButtonIndex = (int) (Math.random() * (respuestaButtons.length));
         respuestaButtons[correctButtonIndex].setText(correctAnswer);
         int optionIndex = 0;
@@ -376,12 +376,12 @@ public class PreguntaVista extends JFrame implements ActionListener {
     @Override
     public void actionPerformed(ActionEvent e) {
         if (e.getSource() == siguienteButton) {
-            int numPregunta = Randomizer.getRandomIndex(0, modelo.size() - 1);
+            int numPregunta = com.cerp.Randomizer.getRandomIndex(0, modelo.size() - 1);
             Pregunta currentQuestion = modelo.get(numPregunta);
             String correctAnswer = currentQuestion.getCorrecta();
             idLabel.setText("ID de pregunta: " + currentQuestion.getIdPregunta());
             preguntaLabel.setText(currentQuestion.getPregunta());
-            int correctButtonIndex = Randomizer.getRandomIndex(0, respuestaButtons.length - 1);
+            int correctButtonIndex = com.cerp.Randomizer.getRandomIndex(0, respuestaButtons.length - 1);
             this.correctIndex = correctButtonIndex;
             //int correctButtonIndex = (int) (Math.random() * (respuestaButtons.length));
             respuestaButtons[correctButtonIndex].setText(correctAnswer);

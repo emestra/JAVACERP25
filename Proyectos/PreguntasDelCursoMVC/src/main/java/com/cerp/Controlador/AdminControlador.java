@@ -1,4 +1,4 @@
-package PreguntasDelCursoMVC.Controlador;
+package com.cerp.Controlador;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -7,10 +7,13 @@ import java.awt.event.WindowEvent;
 import java.io.IOException;
 import java.util.List;
 
-import PreguntasDelCursoMVC.FileHandler;
-import PreguntasDelCursoMVC.Modelo.Pregunta;
-import PreguntasDelCursoMVC.Vista.AdminVista;
-import PreguntasDelCursoMVC.Vista.InicioVista;
+import com.cerp.FileHandler;
+import com.cerp.Modelo.Pregunta;
+import com.cerp.Vista.AdminVista;
+import com.cerp.Vista.InicioVista;
+import com.cerp.Modelo.Pregunta;
+import com.cerp.Vista.AdminVista;
+import com.cerp.Vista.InicioVista;
 
 /**
  * Clase para representar el controlador de la interfaz gráfica de administración de preguntas.
@@ -45,6 +48,8 @@ public class AdminControlador implements ActionListener {
         });
 
     }
+
+
 
     @Override
     public void actionPerformed(ActionEvent e) {

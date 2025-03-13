@@ -1,11 +1,11 @@
-package PreguntasDelCursoMVC;
+package com.cerp;
 
 import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
 
 /**
- * Clase Randomizer para obtener índices de forma aleatoria
+ * Clase com.cerp.Randomizer para obtener índices de forma aleatoria
  * 
  * @param <T> tipo de dato genérico
  */

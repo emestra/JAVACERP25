@@ -1,16 +1,16 @@
-package PreguntasDelCursoMVC;
+package com.cerp;
 
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
-import PreguntasDelCursoMVC.Controlador.InicioControlador;
-import PreguntasDelCursoMVC.Modelo.Pregunta;
-import PreguntasDelCursoMVC.Vista.InicioVista;
+import com.cerp.Controlador.InicioControlador;
+import com.cerp.Modelo.Pregunta;
+import com.cerp.Vista.InicioVista;
 
 
 /**
- * @file Main.java
+ * @file com.cerp.Main.java
  * @brief Clase principal del programa que permite crear, modificar y eliminar preguntas.
  * @date 20/03/2023
  * @version 1.0
@@ -18,7 +18,7 @@ import PreguntasDelCursoMVC.Vista.InicioVista;
  */
 
 /**
- * @class Main
+ * @class com.cerp.Main
  * @brief Clase principal que permite interactuar con la aplicación de preguntas.
  * @Author Domingo Perez
  */
