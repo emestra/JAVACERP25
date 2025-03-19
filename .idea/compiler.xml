@@ -9,6 +9,7 @@
         <module name="PreguntasDelCurso" />
         <module name="pooshowcase" />
         <module name="PreguntasDelCursoMVC" />
+        <module name="contador-clicks" />
         <module name="preguntasMVC" />
       </profile>
     </annotationProcessing>
